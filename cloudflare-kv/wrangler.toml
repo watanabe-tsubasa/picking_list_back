@@ -1,12 +1,16 @@
 name = "cloudflare-kv"
 compatibility_date = "2023-12-01"
 
+kv_namespaces = [
+  { binding = "PICK", id = "ee149b7024f440a1b9adf462537fadf3" }
+]
+
 # [vars]
 # MY_VAR = "my-variable"
 
 # [[kv_namespaces]]
-# binding = "MY_KV_NAMESPACE"
-# id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+# binding = "_cloudflare_kv"
+# id = "69d69bc4713a496dac6bb3c7907aaa73"
 
 # [[r2_buckets]]
 # binding = "MY_BUCKET"
