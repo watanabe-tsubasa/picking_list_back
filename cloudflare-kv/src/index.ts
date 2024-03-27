@@ -24,6 +24,23 @@ const handleGetRequest = async (c: Context): Promise<Response> => {
   }
 }
 
+interface valueType {
+  list_complete: boolean;
+  keys: { 
+    name: string; 
+  }[]
+}
+
+const handleGetKey =async (c: Context): Promise<Response> => {
+  try {
+    const value: valueType = await c.env.PICK.list();
+    const res = value.keys.map(elem => elem.name)
+    return c.json(res);
+  } catch (err: any) {
+    return new Response(err, { status: 500})
+  }
+}
+
 const handlePutRequest = async (c: Context): Promise<Response> => {
   const {key, value} = await c.req.json<KeyValueData>()
   try {
@@ -45,6 +62,7 @@ app
     return c.text('Hello Hono!')
   })
   .get('/get-value', handleGetRequest)
+  .get('/get-key', handleGetKey)
   .post('/', async (c) => {
     const postData = await c.req.json<postDataType>();
     return c.json(postData)
